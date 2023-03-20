@@ -1,6 +1,3 @@
-package Seminars.HomeWork.Seminar_4;
-
-public class Ex_1 {
 //     Реализовать консольное приложение, которое:
 
 // 1. Принимает от пользователя строку вида text~num
@@ -20,5 +17,36 @@ public class Ex_1 {
 // print~1
 // > my_value
 
+package Seminars.HomeWork.Seminar_4;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Ex_1 {
+    static List<String> listing = new ArrayList<String>();
+    public static void main(String[] args) {
+        String input = "";
+        Scanner iScanner = new Scanner(System.in);
+        while (!input.equals("exit")) {
+            input = iScanner.nextLine();
+            String[] set = input.split("~");
+            if (set.length == 2) {
+                try {
+                    Integer index = Integer.parseInt(set[1]);
+                    if (set[0].equals("print")) {
+                        System.out.println(listing.get(index));
+                    } else {
+                        while (listing.size() < index + 1)
+                            listing.add(null);
+                        listing.set(index, set[0]);
+                    }
+
+                } catch (NumberFormatException e) {
+                    System.out.println(String.format("Error:%s", e.getMessage()));
+                }
+            }
+        }
+        iScanner.close();
+    }   
 }
